@@ -1,0 +1,16 @@
+   <%- include("partials/header.ejs")%>
+   <%- include("partials/nav.ejs")%>
+   <form class="m-auto w-25 mt-5" action="/reset/<%= id %>" method="post">
+
+      <h1 class="mb-4">Reset password</h1>
+         
+      <input required class="form-control mb-3" type="password" placeholder="oldpassword" name="oldpassword">
+      <br> 
+      <input required class="form-control mb-3" type="password" placeholder="new password" name="password" > 
+      <!-- <button class="btn btn-success mb-3">Send OTP</button> -->
+       <!-- <input required maxlength="4" class="form-control mb-3" type="text" placeholder="4563" name="Enter otp"> -->
+      <button class="btn btn-primary w-23">Sign-In</button>
+   </form>
+    <%- include("partials/footer.ejs")%>
+
+

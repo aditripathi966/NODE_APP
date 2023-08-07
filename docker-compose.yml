@@ -1,0 +1,7 @@
+version: '3'
+services:
+  nodeapp:
+    image: adityatripathi044/nodeapp
+    ports:
+      - "3000:3000"
+      - "27017:27017"

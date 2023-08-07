@@ -1,0 +1,24 @@
+   <%- include("partials/header.ejs")%>
+   <%- include("partials/nav.ejs")%>
+    <div class="container jumbotron  p-5 bgcolor-black">
+      <h1>profile page</h1>
+      <p>welcome to <%= user.username%> profile page</p>
+    <h3>List Of All Users</h3>
+    <ul class="list-group w-25">
+      <% users.forEach((user) => {%>
+          <li><%= user.username%>
+            <span>
+                <a class="text-decoration-none" href="/update/<%=user._id%>">✏️</a>
+                
+                <a class="text-decoration-none" href="/delete/<%=user._id%>">❌</a>
+          
+                <a class="text-decoration-none" href="/reset/<%=user._id%>">🔐</a>
+            </span>
+          </li>
+        <%})%>
+    </ul>
+
+  </div>
+
+    <%- include("partials/footer.ejs")%>
+  

@@ -1,0 +1,15 @@
+   <%- include("partials/header.ejs")%>
+   <%- include("partials/nav.ejs")%>
+   <form class="m-auto w-25 mt-5" action="/forgetpw" method="post">
+
+      <h1 class="mb-4">Enter Existing Mail</h1>
+         
+      <input required class="form-control mb-3" type="text" placeholder="example@johndoe.com" name="email"> 
+      <!-- <button class="btn btn-success mb-3">Send OTP</button> -->
+       <!-- <input required maxlength="4" class="form-control mb-3" type="text" placeholder="4563" name="Enter otp"> -->
+      <button class="btn btn-primary w-23">Send mail</button>
+      <br>
+      <p><a href="/signin">signin</a> | <a href="/signup">signup</a></p>
+   </form>
+    <%- include("partials/footer.ejs")%>
+  

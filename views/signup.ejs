@@ -1,0 +1,14 @@
+   <%- include("partials/header.ejs")%>
+   <%- include("partials/nav.ejs")%>
+   <form class="m-auto w-25 mt-5" action="/signup" method="post">
+
+      <h1 class="mb-4">Sign-Up page</h1>
+
+      <input class="form-control mb-3" type="text" placeholder="stefanjohn" name="username"> 
+      <input class="form-control mb-3" type="text" placeholder="example@johndoe.com" name="email"> 
+      <input class="form-control mb-3" type="password" placeholder="*********" name="password"> 
+      <button class="btn btn-primary w-23">Sign-Up</button>
+      <p>Already have an account? <a href="/signin">signin</a></p>
+   </form>
+    <%- include("partials/footer.ejs")%>
+  
