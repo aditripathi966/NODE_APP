@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const User=require("../models/userModel");
 // const user=require("../models/userModel");
-const userModel = require("../models/userModel");
+// const userModel = require("../models/userModel");
 
 const passport = require("passport");
 const LocalStartegy = require("passport-local");
@@ -12,10 +12,10 @@ passport.use(new LocalStartegy(User.authenticate()))
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Home-page' });
+  res.render('index', { title: 'Home-page', user: req.user });
 });
 router.get('/signup', function(req, res, next) {
-  res.render('signup', { title: 'sign-Up' });
+  res.render('signup', { title: 'sign-Up',user: req.user });
 });
 router.post("/signup", async function (req, res, next) {
   try {
@@ -29,11 +29,11 @@ router.post("/signup", async function (req, res, next) {
 
   } catch (error) {
 
-      res.send(error);
+      res.send(error.message);
   }
 });
 router.get('/signin', function(req, res, next) {
-  res.render('signin', { title: 'sign-In' });
+  res.render('signin', { title: 'sign-In', user: req.user });
 });
 
 router.get('/profile',isLoggedIn, async function(req, res, next) {
@@ -46,7 +46,7 @@ router.get('/profile',isLoggedIn, async function(req, res, next) {
   catch(error){
       res.send(error)
   }
-  
+
 });
 
 router.get('/delete/:id', async function(req, res, next) {
@@ -67,7 +67,7 @@ router.post('/signin', passport.authenticate("local", {
      function(req,res,next) {}
 );
 router.get('/forgetpw', function(req, res, next) {
-  res.render('forgetpw', { title: 'forgetpw' });
+  res.render('forgetpw', { title: 'forgetpw', user: req.user });
 });
 router.get('/signout', isLoggedIn ,async function(req, res, next) {
     req.logOut(() => {
@@ -113,7 +113,7 @@ router.get('/update/:id', async function(req, res, next) {
         const currentuser =  await User.findOne({
           _id: req.params.id
         });
-       res.render("updateUser", {user: currentuser})
+       res.render("updateUser", {user: currentuser,user: req.user})
   }
   catch(error){
       res.send(error)
@@ -130,12 +130,13 @@ router.post('/update/:userid', async function(req, res, next) {
    })
   res.redirect("/profile")
     });
-  router.get("/reset/:id", async function (req, res, next) {
-      res.render("reset", { title: "reset password", id: req.params.id })
+  router.get("/reset/:id",isLoggedIn, async function (req, res, next) {
+      res.render("reset", { title: "reset password", id: req.params.id,user:req.user })
   })
     
-  router.post('/reset/:id', async function (req, res, next) {
+  router.post('/reset/:id',isLoggedIn, async function (req, res, next) {
       try {
+
         const { oldpassword, password } = req.body
         const user = await User.findById(req.params.id)
         if (oldpassword !== user.password) {
