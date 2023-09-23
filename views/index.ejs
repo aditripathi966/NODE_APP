@@ -1,11 +1,19 @@
-   <%- include("partials/header.ejs")%>
-   <%- include("partials/nav.ejs")%>
-    <!-- <h1"><%= title %></h1> -->
-    <div class="container jumbotron  p-5 bgcolor-black">
-      <h1>Homepage</h1>
-      <br>
-      <a class="btn btn-primary " href="/signup">Sign Up</a>
-      <a class="btn btn-primary" href="/signin">Sign In</a>
-  </div>
-    <%- include("partials/footer.ejs")%>
-  
+<%- include("partials/header.ejs") %>
+<%- include("partials/nav.ejs") %>
+
+<div class="dev2 container text-center py-5">
+    <div class="jumbotron bg-transparent text-light p-5 rounded-3">
+        <!-- <h1 class="display-4">Welcome to My Vlog Space</h1>
+        <p class="lead">Capture, Share, and Explore Amazing Vlogs</p> -->
+      <div class="vlogpage">
+          <span>Read Our Blog</span>
+        <img src="https://images.unsplash.com/photo-1506377711776-dbdc2f3c20d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="">
+      </div>
+        <div class="signup btn-group mt-4">
+            <a class="btn1 text-decoration-none" href="/signup">Sign Up</a>
+            <a class="btn2 text-decoration-none" href="/signin">Sign In</a>
+        </div>
+    </div>
+</div>
+
+<%- include("partials/footer.ejs") %>

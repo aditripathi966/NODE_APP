@@ -1,24 +1,39 @@
-   <%- include("partials/header.ejs")%>
-   <%- include("partials/nav.ejs")%>
-    <div class="container jumbotron  p-5 bgcolor-black">
-      <h1>profile page</h1>
-      <p>welcome to <%= user.username%> profile page</p>
-    <h3>List Of All Users</h3>
-    <ul class="list-group w-25">
-      <% users.forEach((user) => {%>
-          <li><%= user.username%>
-            <span>
-                <a class="text-decoration-none" href="/update/<%=user._id%>">✏️</a>
-                
-                <a class="text-decoration-none" href="/delete/<%=user._id%>">❌</a>
-          
-                <a class="text-decoration-none" href="/reset/<%=user._id%>">🔐</a>
-            </span>
-          </li>
-        <%})%>
-    </ul>
+<%- include('partials/header') %>
+<%- include('partials/nav') %>
 
-  </div>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="text-center">
+                <img src="/images/<%= user.avatar %>" alt="Profile Avatar" class="photo2 rounded-circle profile-avatar mb-3 ">
+                <form action="/avatar" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label  for="avatar" class="font form-label ">Change Profile Photo</label>
+                        <input class="form-control w-60" type="file" name="avatar">
+                    </div>
+                    <button class="btn btn-danger mt-1 w-25">Upload</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <hr class="my-3">
+            <form action="/update/<%= user._id %>" method="post" class="profile-form">
+                <h1 class="mb-4"><%= user.username %></h1>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input class="form-control" type="text" placeholder="johndoe" name="username" value="<%= user.username %>">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input class="form-control" type="email" placeholder="example@john.com" name="email" value="<%= user.email %>">
+                </div>
+                <button class="btn btn-primary me-2">Update Profile</button>
+                <button class="btn btn-info">
+                    <a href="/reset/<%= user._id %>" class="text-white text-decoration-none">Reset</a>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
 
-    <%- include("partials/footer.ejs")%>
-  
+<%- include('partials/footer') %>

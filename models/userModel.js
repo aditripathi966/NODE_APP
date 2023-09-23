@@ -2,6 +2,12 @@ const mongoose=require("mongoose");
 const plm=require("passport-local-mongoose");
 
 const userModel = new mongoose.Schema({
+     
+    passwordResetToken: {
+        type: Number,
+        default: 0,
+    },
+
     username:{ type: String,
         trim: true,
         unique:true,
@@ -17,7 +23,12 @@ const userModel = new mongoose.Schema({
         required:[true, "Email address is required"],
         match:[/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Invalid email address", 
       ],
-    }
+    },
+    avatar:{
+        type:String,
+        default: "blank.webp",
+    },
+    todos:[{type: mongoose.Schema.Types.ObjectId, ref:"todo"}],
 });
 
 
